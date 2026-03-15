@@ -47,6 +47,6 @@ export const projectsData = [
     ],
     demoLink: "https://news-app-theta-opal.vercel.app",
     githubLink: "https://github.com/Abhikr2001/News_app",
-    image: "/projects/news.png",
+    image: "/projects/news.webp",
   },
 ];
