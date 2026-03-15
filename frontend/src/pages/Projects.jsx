@@ -114,12 +114,18 @@ const Projects = () => {
                 </div>
 
                 {/* Project Image */}
-                <div className="relative h-48 w-full overflow-hidden bg-slate-200 dark:bg-slate-800">
-                  <img 
-                    src={project.imageUrl ? `http://localhost:5000/uploads/${project.imageUrl}` : "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop"} 
-                    alt={project.title} 
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+<div className="relative h-48 w-full overflow-hidden bg-slate-200 dark:bg-slate-800">
+  <img
+    src={
+      project.imageUrl
+        ? `http://localhost:5000/uploads/${project.imageUrl}`
+        : project.image
+        ? project.image
+        : "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop"
+    }
+    alt={project.title}
+    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 pointer-events-none">
                     <div className="flex space-x-3 w-full justify-end pointer-events-auto">
                       {project.githubRepo && (
