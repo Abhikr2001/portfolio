@@ -1,15 +1,5 @@
 export const projectsData = [
-    {
-        id: "portfolio-v1",
-        title: "Personal Developer Portfolio",
-        description: "A modern, responsive developer portfolio with dark mode, animations, and a centralized data structure.",
-        technologies: ["React", "Tailwind CSS", "Framer Motion"],
-        image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop",
-        demoLink: "#",
-        githubLink: "https://github.com/Abhikr2001",
-        details: "Built this portfolio website from scratch to showcase my skills and projects. Utilized Vite for fast bundling, Tailwind CSS for scalable styling, and Framer Motion for smooth interactions. It includes full dark mode support, responsive design, and organized data structures for easy updates."
-    },
-     {
+  {
     id: "youtube-clone",
     title: "YouTube Clone",
     description:
@@ -20,11 +10,11 @@ export const projectsData = [
       "HTML",
       "CSS",
       "Tailwind CSS",
-      "YouTube Data API"
+      "YouTube Data API",
     ],
     demoLink: "https://youtube-clone-five-wheat.vercel.app",
-    githubLink: "https://github.com/Abhikr2001/youtube-clone.git",
-    image: "/projects/youtube.png"
+    githubLink: "https://github.com/Abhikr2001/youtube-clone",
+    image: "/projects/youtube.png",
   },
 
   {
@@ -36,11 +26,11 @@ export const projectsData = [
       "React.js",
       "JavaScript",
       "HTML",
-      "CSS"
+      "CSS",
     ],
     demoLink: "https://spotify-clone-sage-zeta.vercel.app",
-    githubLink: "https://github.com/Abhikr2001/spotify-clone.git",
-    image: "/projects/spotify.png"
+    githubLink: "https://github.com/Abhikr2001/spotify-clone",
+    image: "/projects/spotify.png",
   },
 
   {
@@ -53,10 +43,10 @@ export const projectsData = [
       "JavaScript",
       "HTML",
       "CSS",
-      "REST API"
+      "REST API",
     ],
     demoLink: "https://news-app-theta-opal.vercel.app",
-    githubLink: "https://github.com/Abhikr2001/News_app.git",
-    image: "/projects/news.png"
-  }// Add more projects here
+    githubLink: "https://github.com/Abhikr2001/News_app",
+    image: "/projects/news.png",
+  },
 ];
