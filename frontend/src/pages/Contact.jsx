@@ -38,8 +38,13 @@ const Contact = () => {
         }
     };
 
-    const phoneNumber = '917902204570';
-    const whatsappLink = `https://wa.me/${phoneNumber}?text=Hi Abhinandh, I saw your portfolio and would like to connect!`;
+   const phoneNumber = '917902204570';
+
+const message = encodeURIComponent(
+  "Hi Abhinandh, I saw your portfolio and would like to connect!"
+);
+
+const whatsappLink = `https://wa.me/${phoneNumber}?text=${message}`;
 
     return (
         <div className="py-12">
