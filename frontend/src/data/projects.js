@@ -29,7 +29,7 @@ export const projectsData = [
     githubLink: "https://github.com/Abhikr2001/youtube-clone",
     githubRepo: "https://github.com/Abhikr2001/youtube-clone",
 
-    image: "/projects/youtube.png",
+    image: "/projects/youtube.jpg",
     imageUrl: null
   },
 
