@@ -90,28 +90,42 @@ const Resume = () => {
             <AnimatePresence>
                 {isAdding && (
                     <motion.div
-                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
                         className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4"
                     >
                         <motion.div
-                            initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }}
+                            initial={{ scale: 0.95, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.95, opacity: 0 }}
                             className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden"
                         >
-                            <div className="flex justify-between items-center p-6 border-b border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-800">
-                                <h3 className="text-xl font-bold text-slate-900 dark:text-white">Upload New Resume</h3>
-                                <button onClick={() => setIsAdding(false)} className="text-slate-400 hover:text-slate-600 dark:hover:text-white bg-slate-100 dark:bg-slate-700 p-2 rounded-full">
+                            <div className="flex justify-between items-center p-6 border-b border-slate-100 dark:border-slate-700">
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                                    Upload New Resume
+                                </h3>
+
+                                <button
+                                    onClick={() => setIsAdding(false)}
+                                    className="text-slate-400 hover:text-slate-600 dark:hover:text-white bg-slate-100 dark:bg-slate-700 p-2 rounded-full"
+                                >
                                     <X size={20} />
                                 </button>
                             </div>
 
                             <form onSubmit={handleUpload} className="p-6 space-y-5">
+
                                 <div>
-                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Role Title</label>
+                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
+                                        Role Title
+                                    </label>
+
                                     <input
                                         type="text"
                                         required
                                         value={roleTitle}
-                                        onChange={e => setRoleTitle(e.target.value)}
+                                        onChange={(e) => setRoleTitle(e.target.value)}
                                         placeholder="e.g., Frontend Developer Resume"
                                         className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900/50 text-slate-900 dark:text-white"
                                     />
@@ -119,19 +133,33 @@ const Resume = () => {
 
                                 <div>
                                     <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-xl cursor-pointer bg-slate-50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+
                                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
                                             <Upload size={32} className="text-slate-400 mb-3" />
+
                                             <p className="text-sm text-slate-500 dark:text-slate-400">
                                                 {resumeFile ? resumeFile.name : "Click to upload PDF"}
                                             </p>
                                         </div>
-                                        <input type="file" accept="application/pdf" className="hidden" onChange={e => setResumeFile(e.target.files[0])} required />
+
+                                        <input
+                                            type="file"
+                                            accept="application/pdf"
+                                            className="hidden"
+                                            onChange={(e) => setResumeFile(e.target.files[0])}
+                                            required
+                                        />
+
                                     </label>
                                 </div>
 
-                                <button type="submit" className="w-full py-3 bg-teal-500 text-white rounded-xl font-medium shadow-lg hover:bg-teal-600 transition-colors mt-6">
+                                <button
+                                    type="submit"
+                                    className="w-full py-3 bg-teal-500 text-white rounded-xl font-medium shadow-lg hover:bg-teal-600 transition-colors mt-6"
+                                >
                                     Save Resume
                                 </button>
+
                             </form>
                         </motion.div>
                     </motion.div>
@@ -139,34 +167,48 @@ const Resume = () => {
             </AnimatePresence>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
                 {loading ? (
                     <div className="col-span-full flex justify-center py-12">
                         <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-teal-500"></div>
                     </div>
+
                 ) : resumes.length === 0 ? (
+
                     <div className="col-span-full text-center py-12 glass-card border-dashed">
-                        <p className="text-slate-500 dark:text-slate-400">No resumes uploaded yet.</p>
+                        <p className="text-slate-500 dark:text-slate-400">
+                            No resumes uploaded yet.
+                        </p>
                     </div>
+
                 ) : (
+
                     resumes.map((resume, idx) => (
+
                         <motion.div
                             key={resume._id}
-                            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.1 }}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: idx * 0.1 }}
                             className="glass-card p-6 flex flex-col items-center text-center"
                         >
+
                             <div className="w-16 h-16 bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-full flex items-center justify-center mb-4 border-2 border-white dark:border-slate-800 shadow-sm">
                                 <FileText size={28} />
                             </div>
 
-                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1 line-clamp-1">{resume.roleTitle}</h3>
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1 line-clamp-1">
+                                {resume.roleTitle}
+                            </h3>
 
                             <p className="text-xs text-slate-500 dark:text-slate-400 mb-6">
                                 Uploaded: {new Date(resume.uploadedAt).toLocaleDateString()}
                             </p>
 
                             <div className="flex flex-wrap justify-center gap-3 w-full mt-auto">
+
                                 <a
-                                    href={`${API}/uploads/${resume.path}`}
+                                    href={`${API}/uploads/${resume.path.replace("resumes/","")}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex-1 min-w-[120px] flex items-center justify-center px-4 py-2 bg-slate-800 dark:bg-slate-700 hover:bg-slate-900 dark:hover:bg-slate-600 text-white text-sm rounded-lg font-medium transition-colors"
@@ -175,7 +217,7 @@ const Resume = () => {
                                 </a>
 
                                 <a
-                                    href={`${API}/uploads/${resume.path}`}
+                                    href={`${API}/uploads/${resume.path.replace("resumes/","")}`}
                                     download={resume.fileName}
                                     className="flex-1 min-w-[120px] flex items-center justify-center px-4 py-2 bg-teal-500 hover:bg-teal-600 text-white text-sm rounded-lg font-medium transition-colors"
                                 >
@@ -188,10 +230,15 @@ const Resume = () => {
                                 >
                                     <Trash2 size={16} className="mr-2" /> Delete Resume
                                 </button>
+
                             </div>
+
                         </motion.div>
+
                     ))
+
                 )}
+
             </div>
         </div>
     );
