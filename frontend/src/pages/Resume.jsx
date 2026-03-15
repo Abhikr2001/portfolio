@@ -3,12 +3,13 @@ import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FileText, Download, Eye, Upload, Plus, X, Trash2 } from 'lucide-react';
 
+const API = import.meta.env.VITE_API_URL;
+
 const Resume = () => {
     const [resumes, setResumes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isAdding, setIsAdding] = useState(false);
 
-    // Form State
     const [roleTitle, setRoleTitle] = useState('');
     const [resumeFile, setResumeFile] = useState(null);
 
@@ -18,7 +19,7 @@ const Resume = () => {
 
     const fetchResumes = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/resumes');
+            const res = await axios.get(`${API}/api/resumes`);
             if (res.data.success) {
                 setResumes(res.data.data);
             }
@@ -38,9 +39,10 @@ const Resume = () => {
         formData.append('roleTitle', roleTitle);
 
         try {
-            const res = await axios.post('http://localhost:5000/api/resumes', formData, {
+            const res = await axios.post(`${API}/api/resumes`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
+
             if (res.data.success) {
                 setResumes([res.data.data, ...resumes]);
                 setIsAdding(false);
@@ -54,7 +56,7 @@ const Resume = () => {
 
     const handleDelete = async (id) => {
         try {
-            const res = await axios.delete(`http://localhost:5000/api/resumes/${id}`);
+            const res = await axios.delete(`${API}/api/resumes/${id}`);
             if (res.data.success) {
                 setResumes(resumes.filter(r => r._id !== id));
             }
@@ -85,7 +87,6 @@ const Resume = () => {
                 </button>
             </div>
 
-            {/* Upload Modal */}
             <AnimatePresence>
                 {isAdding && (
                     <motion.div
@@ -107,7 +108,10 @@ const Resume = () => {
                                 <div>
                                     <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Role Title</label>
                                     <input
-                                        type="text" required value={roleTitle} onChange={e => setRoleTitle(e.target.value)}
+                                        type="text"
+                                        required
+                                        value={roleTitle}
+                                        onChange={e => setRoleTitle(e.target.value)}
                                         placeholder="e.g., Frontend Developer Resume"
                                         className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900/50 text-slate-900 dark:text-white"
                                     />
@@ -134,7 +138,6 @@ const Resume = () => {
                 )}
             </AnimatePresence>
 
-            {/* Resumes List */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {loading ? (
                     <div className="col-span-full flex justify-center py-12">
@@ -154,22 +157,31 @@ const Resume = () => {
                             <div className="w-16 h-16 bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-full flex items-center justify-center mb-4 border-2 border-white dark:border-slate-800 shadow-sm">
                                 <FileText size={28} />
                             </div>
+
                             <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1 line-clamp-1">{resume.roleTitle}</h3>
-                            <p className="text-xs text-slate-500 dark:text-slate-400 mb-6">Uploaded: {new Date(resume.uploadedAt).toLocaleDateString()}</p>
+
+                            <p className="text-xs text-slate-500 dark:text-slate-400 mb-6">
+                                Uploaded: {new Date(resume.uploadedAt).toLocaleDateString()}
+                            </p>
 
                             <div className="flex flex-wrap justify-center gap-3 w-full mt-auto">
                                 <a
-                                    href={`http://localhost:5000/uploads/${resume.path}`} target="_blank" rel="noopener noreferrer"
+                                    href={`${API}/uploads/${resume.path}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="flex-1 min-w-[120px] flex items-center justify-center px-4 py-2 bg-slate-800 dark:bg-slate-700 hover:bg-slate-900 dark:hover:bg-slate-600 text-white text-sm rounded-lg font-medium transition-colors"
                                 >
                                     <Eye size={16} className="mr-2" /> View
                                 </a>
+
                                 <a
-                                    href={`http://localhost:5000/uploads/${resume.path}`} download={resume.fileName}
+                                    href={`${API}/uploads/${resume.path}`}
+                                    download={resume.fileName}
                                     className="flex-1 min-w-[120px] flex items-center justify-center px-4 py-2 bg-teal-500 hover:bg-teal-600 text-white text-sm rounded-lg font-medium transition-colors"
                                 >
                                     <Download size={16} className="mr-2" /> Download
                                 </a>
+
                                 <button
                                     onClick={() => handleDelete(resume._id)}
                                     className="w-full mt-1 flex items-center justify-center px-4 py-2 bg-red-100 hover:bg-red-200 dark:bg-red-900/30 dark:hover:bg-red-900/50 text-red-600 dark:text-red-400 text-sm rounded-lg font-medium transition-colors border border-red-200 dark:border-red-800/50"
