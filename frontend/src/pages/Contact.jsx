@@ -38,7 +38,7 @@ const Contact = () => {
         }
     };
 
-    const phoneNumber = '911234567890';
+    const phoneNumber = '7902204570';
     const whatsappLink = `https://wa.me/${phoneNumber}?text=Hi Abhinandh, I saw your portfolio and would like to connect!`;
 
     return (
