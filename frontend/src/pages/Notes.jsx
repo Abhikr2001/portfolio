@@ -23,7 +23,7 @@ const Notes = () => {
 
     const fetchNotes = async () => {
         try {
-            const res = await axios.get('http://https://portfolio-backend.onrender.com/api/notes');
+            const res = await axios.get('https://portfolio-backend.onrender.com/api/notes');
             if (res.data.success) {
                 setNotes(res.data.data);
             }
@@ -64,7 +64,7 @@ const Notes = () => {
         }
 
         try {
-            const res = await axios.post('http://https://portfolio-backend.onrender.com/api/notes', formData, {
+            const res = await axios.post('https://portfolio-backend.onrender.com/api/notes', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
 
@@ -85,7 +85,7 @@ const Notes = () => {
 
     const deleteNote = async (id) => {
         try {
-            const res = await axios.delete(`http://https://portfolio-backend.onrender.com/api/notes/${id}`);
+            const res = await axios.delete(`https://portfolio-backend.onrender.com/api/notes/${id}`);
             if (res.data.success) {
                 setNotes(notes.filter(note => note._id !== id && note.id !== id));
             }
