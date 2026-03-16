@@ -3,6 +3,8 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import { Mail, Phone, Send, MessageSquare } from 'lucide-react';
 
+const API = import.meta.env.VITE_API_URL;
+
 const Contact = () => {
     const [formData, setFormData] = useState({
         name: '',
@@ -23,7 +25,11 @@ const Contact = () => {
         setStatus('submitting');
 
         try {
-            const res = await axios.post('https://portfolio-1-fpcy.onrender.com/api/contact', formData);
+
+            
+
+            const res = await axios.post(`${API}/api/contact`, formData);
+
             if (res.data.success) {
                 setStatus('success');
                 setFormData({ name: '', email: '', message: '' });

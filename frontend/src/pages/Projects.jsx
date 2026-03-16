@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { Github, ExternalLink, ArrowRight, Database, Trash2, ShieldAlert } from 'lucide-react';
 import { projectsData as fallbackData } from '../data/projects'; // Keep fallback for local/offline dev
 
+const API = import.meta.env.VITE_API_URL;
+
 const formatUrl = (url) => {
   if (!url) return '';
   if (!url.startsWith('http://') && !url.startsWith('https://')) {
@@ -25,7 +27,11 @@ const Projects = () => {
   const fetchProjects = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('https://portfolio-1-fpcy.onrender.com/api/projects');
+
+      //const res = await axios.get('https://portfolio-1-fpcy.onrender.com/api/projects');
+
+      const res = await axios.get(`${API}/api/projects`);
+
       if (res.data.success && res.data.data.length > 0) {
         setProjects(res.data.data);
       } else {
@@ -43,7 +49,9 @@ const Projects = () => {
 
   const deleteProject = async (id) => {
     try {
-      const res = await axios.delete(`https://portfolio-1-fpcy.onrender.com/api/projects/${id}`);
+     // const res = await axios.delete(`https://portfolio-1-fpcy.onrender.com/api/projects/${id}`);
+     const res = await axios.get(`${API}/api/projects`);
+
       if (res.data.success) {
         setProjects(projects.filter(p => p._id !== id));
       }
@@ -118,7 +126,11 @@ const Projects = () => {
   <img
     src={
       project.imageUrl
-        ? `https://portfolio-1-fpcy.onrender.com/uploads/${project.imageUrl}`
+
+        //? `https://portfolio-1-fpcy.onrender.com/uploads/${project.imageUrl}`
+
+        ? `${API}/uploads/${project.imageUrl}`
+
         : project.image
         ? project.image
         : "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop"

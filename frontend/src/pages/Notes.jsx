@@ -3,6 +3,8 @@ import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Image as ImageIcon, Calendar, X, Trash2, Book } from 'lucide-react';
 
+const API = import.meta.env.VITE_API_URL;
+
 const Notes = () => {
     const [notes, setNotes] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -23,7 +25,11 @@ const Notes = () => {
 
     const fetchNotes = async () => {
         try {
-            const res = await axios.get('https://portfolio-1-fpcy.onrender.com/api/notes');
+
+           // const res = await axios.get('https://portfolio-1-fpcy.onrender.com/api/notes');
+
+            const res = await axios.get(`${API}/api/notes`);
+
             if (res.data.success) {
                 setNotes(res.data.data);
             }
@@ -64,7 +70,11 @@ const Notes = () => {
         }
 
         try {
-            const res = await axios.post('https://portfolio-1-fpcy.onrender.com/api/notes', formData, {
+
+            //const res = await axios.post('https://portfolio-1-fpcy.onrender.com/api/notes', formData, {
+
+            const res = await axios.post(`${API}/api/notes`, formData, {
+
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
 
@@ -85,7 +95,11 @@ const Notes = () => {
 
     const deleteNote = async (id) => {
         try {
-            const res = await axios.delete(`https://portfolio-1-fpcy.onrender.com/api/notes/${id}`);
+
+           
+
+            const res = await axios.delete(`${API}/api/notes/${id}`);
+
             if (res.data.success) {
                 setNotes(notes.filter(note => note._id !== id && note.id !== id));
             }
@@ -242,7 +256,11 @@ const Notes = () => {
                             {(note.imagePath || note.image) && (
                                 <div className="w-full max-h-64 overflow-hidden bg-slate-100 dark:bg-slate-800">
                                     <img
-                                        src={note.imagePath ? `https://portfolio-1-fpcy.onrender.com/uploads/${note.imagePath}` : note.image}
+
+                                       
+
+                                       src={note.imagePath ? `${API}/uploads/${note.imagePath}` : note.image}
+
                                         alt="Note Media"
                                         className="w-full h-auto object-cover"
                                     />
