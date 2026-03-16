@@ -71,7 +71,7 @@ const whatsappLink = `https://wa.me/${phoneNumber}?text=${message}`;
                         <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Contact Information</h3>
 
                         <div className="space-y-6">
-                            <a href="mailto:abhinandhkrtalent@gmail.com" className="flex items-start group">
+                            <a href="mailto:abhinandhkr@gmail.com" className="flex items-start group">
                                 <div className="p-3 bg-teal-100 dark:bg-teal-900/40 text-teal-600 dark:text-teal-400 rounded-xl mr-4 group-hover:scale-110 transition-transform">
                                     <Mail size={24} />
                                 </div>
