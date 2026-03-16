@@ -23,7 +23,7 @@ const Contact = () => {
         setStatus('submitting');
 
         try {
-            const res = await axios.post('http://https://portfolio-backend.onrender.com/api/contact', formData);
+            const res = await axios.post('https://portfolio-backend.onrender.com/api/contact', formData);
             if (res.data.success) {
                 setStatus('success');
                 setFormData({ name: '', email: '', message: '' });
