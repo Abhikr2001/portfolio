@@ -25,7 +25,7 @@ const Projects = () => {
   const fetchProjects = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://https://portfolio-backend.onrender.com/api/projects');
+      const res = await axios.get('https://portfolio-backend.onrender.com/api/projects');
       if (res.data.success && res.data.data.length > 0) {
         setProjects(res.data.data);
       } else {
@@ -43,7 +43,7 @@ const Projects = () => {
 
   const deleteProject = async (id) => {
     try {
-      const res = await axios.delete(`http://https://portfolio-backend.onrender.com/api/projects/${id}`);
+      const res = await axios.delete(`https://portfolio-backend.onrender.com/api/projects/${id}`);
       if (res.data.success) {
         setProjects(projects.filter(p => p._id !== id));
       }
