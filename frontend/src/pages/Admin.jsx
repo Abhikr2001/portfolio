@@ -44,7 +44,7 @@ const AdminPanel = () => {
     formData.append('projectImage', projectImage);
 
     try {
-      const res = await axios.post('http://localhost:5000/api/projects', formData, {
+      const res = await axios.post('http://https://portfolio-backend.onrender.com/api/projects', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       if (res.data.success) {

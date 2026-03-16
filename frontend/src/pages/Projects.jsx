@@ -25,7 +25,7 @@ const Projects = () => {
   const fetchProjects = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:5000/api/projects');
+      const res = await axios.get('http://https://portfolio-backend.onrender.com/api/projects');
       if (res.data.success && res.data.data.length > 0) {
         setProjects(res.data.data);
       } else {
@@ -43,7 +43,7 @@ const Projects = () => {
 
   const deleteProject = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:5000/api/projects/${id}`);
+      const res = await axios.delete(`http://https://portfolio-backend.onrender.com/api/projects/${id}`);
       if (res.data.success) {
         setProjects(projects.filter(p => p._id !== id));
       }
@@ -118,7 +118,7 @@ const Projects = () => {
   <img
     src={
       project.imageUrl
-        ? `http://localhost:5000/uploads/${project.imageUrl}`
+        ? `http://https://portfolio-backend.onrender.com/uploads/${project.imageUrl}`
         : project.image
         ? project.image
         : "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop"

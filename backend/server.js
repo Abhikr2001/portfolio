@@ -17,8 +17,8 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: "https://portfolio-rust-iota-62.vercel.app",
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: ["https://portfolio-rust-iota-62.vercel.app"],
+  methods: ["GET","POST","PUT","DELETE"],
   credentials: true
 }));
 app.use(express.json());
