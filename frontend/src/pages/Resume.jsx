@@ -224,12 +224,7 @@ const Resume = () => {
                                     <Download size={16} className="mr-2" /> Download
                                 </a>
 
-                                <button
-                                    onClick={() => handleDelete(resume._id)}
-                                    className="w-full mt-1 flex items-center justify-center px-4 py-2 bg-red-100 hover:bg-red-200 dark:bg-red-900/30 dark:hover:bg-red-900/50 text-red-600 dark:text-red-400 text-sm rounded-lg font-medium transition-colors border border-red-200 dark:border-red-800/50"
-                                >
-                                    <Trash2 size={16} className="mr-2" /> Delete Resume
-                                </button>
+
 
                             </div>
 
