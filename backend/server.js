@@ -22,7 +22,10 @@ app.use(
     origin: [
       "https://portfolio-rust-iota-62.vercel.app",
       "https://portfolio-git-main-abhinandhs-projects-03e98e05.vercel.app",
-      "https://portfolio-1f97jxpfx-abhinandhs-projects-03e98e05.vercel.app"
+      "https://portfolio-1f97jxpfx-abhinandhs-projects-03e98e05.vercel.app",
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "http://localhost:3000"
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
