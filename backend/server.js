@@ -19,7 +19,11 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: "https://portfolio-rust-iota-62.vercel.app",
+    origin: [
+      "https://portfolio-rust-iota-62.vercel.app",
+      "https://portfolio-git-main-abhinandhs-projects-03e98e05.vercel.app",
+      "https://portfolio-1f97jxpfx-abhinandhs-projects-03e98e05.vercel.app"
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })

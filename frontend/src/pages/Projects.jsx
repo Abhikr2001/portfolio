@@ -49,11 +49,10 @@ const Projects = () => {
 
   const deleteProject = async (id) => {
     try {
-     // const res = await axios.delete(`https://portfolio-1-fpcy.onrender.com/api/projects/${id}`);
-     const res = await axios.get(`${API}/api/projects`);
+      const res = await axios.delete(`${API}/api/projects/${id}`);
 
       if (res.data.success) {
-        setProjects(projects.filter(p => p._id !== id));
+        setProjects(projects.filter(p => p._id !== id && p.id !== id));
       }
     } catch (err) {
       console.error("Failed to delete project:", err);

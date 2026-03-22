@@ -31,8 +31,14 @@ router.post('/', async (req, res) => {
             text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
         };
 
-        await transporter.sendMail(mailOptions);
-        res.status(201).json({ success: true, message: 'Message sent successfully' });
+        try {
+            await transporter.sendMail(mailOptions);
+            console.log("Email sent successfully");
+        } catch (emailError) {
+            console.error("Email sending failed:", emailError.message);
+        }
+        
+        res.status(201).json({ success: true, message: 'Message saved successfully' });
     } catch (error) {
         res.status(500).json({ success: false, message: 'Server Error', error: error.message });
     }
