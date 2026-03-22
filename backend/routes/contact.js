@@ -7,6 +7,28 @@ dotenv.config();
 
 const router = express.Router();
 
+router.get('/test', async (req, res) => {
+    try {
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS
+            }
+        });
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: process.env.EMAIL_USER,
+            subject: 'Render SMTP Diagnostics',
+            text: `SMTP test successful. EMAIL_USER is ${process.env.EMAIL_USER}, EMAIL_PASS length is ${process.env.EMAIL_PASS ? process.env.EMAIL_PASS.length : 0}`
+        };
+        const info = await transporter.sendMail(mailOptions);
+        res.json({ success: true, info });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message, stack: err.stack, user: process.env.EMAIL_USER });
+    }
+});
+
 router.post('/', async (req, res) => {
     const { name, email, message } = req.body;
 
