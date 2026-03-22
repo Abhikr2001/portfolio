@@ -15,9 +15,9 @@ router.post('/', async (req, res) => {
         const newMessage = new Message({ name, email, message });
         await newMessage.save();
 
-        // 2. Send Email via Nodemailer
+        // 2. Send Email via Nodemailer (Non-blocking)
         const transporter = nodemailer.createTransport({
-            service: 'gmail', // You can change this to your email provider
+            service: 'gmail', 
             auth: {
                 user: process.env.EMAIL_USER,
                 pass: process.env.EMAIL_PASS
@@ -31,12 +31,10 @@ router.post('/', async (req, res) => {
             text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
         };
 
-        try {
-            await transporter.sendMail(mailOptions);
-            console.log("Email sent successfully");
-        } catch (emailError) {
-            console.error("Email sending failed:", emailError.message);
-        }
+        // Don't await this so the user doesn't experience SMTP timeouts!
+        transporter.sendMail(mailOptions)
+            .then(() => console.log("Email sent successfully"))
+            .catch(err => console.error("Email sending failed:", err.message));
         
         res.status(201).json({ success: true, message: 'Message saved successfully' });
     } catch (error) {
