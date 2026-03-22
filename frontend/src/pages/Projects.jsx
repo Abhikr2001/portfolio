@@ -125,7 +125,11 @@ const Projects = () => {
   <img
     src={
       project.imageUrl
-        ? (project.imageUrl.startsWith('http') ? project.imageUrl : `${API}/uploads/${project.imageUrl}`)
+        ? (project.imageUrl.startsWith('http') 
+            ? project.imageUrl 
+            : project.imageUrl.startsWith('projects/') 
+              ? `${API}/uploads/${project.imageUrl}` 
+              : `/projects/${project.imageUrl}`)
         : project.image
         ? project.image
         : "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop"
